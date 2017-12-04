@@ -1,1 +1,1 @@
-RGBNeuralNet
+Proposal
