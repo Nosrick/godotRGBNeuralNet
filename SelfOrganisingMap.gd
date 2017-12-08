@@ -31,14 +31,15 @@ func Reinforce():
 			if distanceSquared < widthSquared:
 				var influence = exp((-distanceSquared) / (2 * widthSquared))
 				
-				nodes[i].AdjustWeights(lastWinner.weights, 1.0, influence)
+				nodes[i].AdjustWeightsOja(lastWinner.weights, 0.5, influence)
+	
+	return true
 
 func Epoch(data):
-	if(data[0].size() != INPUT_SAMPLE_SIZE):
+	if(data.size() != INPUT_SAMPLE_SIZE):
 		return false
 	
-	var result = tools.Roll(0, data.size())
-	lastWinner = GetBestMatch(data[result])
+	lastWinner = GetBestMatch(data)
 	
 	var neighbourhood = sqrt(width * height) / 10
 	var widthSquared = neighbourhood * neighbourhood
@@ -49,10 +50,7 @@ func Epoch(data):
 		if (distanceSquared < widthSquared):
 			var influence = exp((-distanceSquared) / (2 * widthSquared))
 			
-			var before = nodes[i].weights
-			nodes[i].AdjustWeights(data[result], 1.0, influence)
-			var after = nodes[i].weights
-			print("CHANGED: " + str(before == after))
+			nodes[i].AdjustWeightsOja(data, 0.5, influence)
 	
 	return true
 

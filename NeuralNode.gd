@@ -27,5 +27,11 @@ func AdjustWeights(target, learningRate, influence):
 	for i in range(target.size()):
 		weights[i] += learningRate * influence * ((target[i] - weights[i]))
 
+func AdjustWeightsOja(target, learningRate, influence):
+	for i in range(target.size()):
+		weights[i] += influence * (learningRate * ((target[i] * weights[i]) - ((target[i] * weights[i]) * (target[i] * weights[i]) * weights[i])))
+	
+	print(str(weights))
+
 func _ready():
 	pass

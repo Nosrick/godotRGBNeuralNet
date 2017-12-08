@@ -23,6 +23,7 @@ func _input(event):
 			var green = colour.g
 			var blue = colour.b
 			
+			lastColour.clear()
 			lastColour.append(red)
 			lastColour.append(green)
 			lastColour.append(blue)
@@ -43,9 +44,7 @@ func _input(event):
 				neuralNet.Reinforce()
 				console.append_bbcode("Reinforcing.\n")
 			elif input == "N" or input == "n":
-				var container = []
-				container.push_back(lastColour)
-				neuralNet.Epoch(container)
+				neuralNet.Epoch(lastColour)
 				console.append_bbcode("Retraining.\n")
 			self.set_text("")
 			waitingForColour = true
