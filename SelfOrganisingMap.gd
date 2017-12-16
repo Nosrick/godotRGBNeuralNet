@@ -31,7 +31,7 @@ func Reinforce():
 			if distanceSquared < widthSquared:
 				var influence = exp((-distanceSquared) / (2 * widthSquared))
 				
-				nodes[i].AdjustWeightsOja(lastWinner.weights, 0.5, influence)
+				nodes[i].AdjustWeightsOja(lastWinner.weights, 1.0, influence)
 	
 	return true
 
@@ -50,7 +50,7 @@ func Epoch(data):
 		if (distanceSquared < widthSquared):
 			var influence = exp((-distanceSquared) / (2 * widthSquared))
 			
-			nodes[i].AdjustWeightsOja(data, 0.5, influence)
+			nodes[i].AdjustWeightsOja(data, 1.0, influence)
 	
 	return true
 
